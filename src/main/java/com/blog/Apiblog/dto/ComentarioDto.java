@@ -1,16 +1,25 @@
 package com.blog.Apiblog.dto;
 
 import com.blog.Apiblog.model.Publicacion;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class ComentarioDto {
 
     private Long id;
+    @NotEmpty(message = "El nombre no debe estar vacio")
     private String nombre;
+    @NotEmpty(message = "El email no debe estar vacio o nulo")
+    @Email
     private String email;
+    @NotEmpty
+    @Size(min = 10, message = "El cuerpo debe tener al menos 10 carateres")
     private String cuerpo;
     private Publicacion publicacion;
 
